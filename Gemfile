@@ -15,8 +15,8 @@ end
 group :test do
 	gem 'rspec-rails'
 	gem 'capybara'
-	gem 'rb-inotify'
-	gem 'libnotify'
+	gem 'rb-inotify', '0.8.8'
+	gem 'libnotify', '0.5.9'
 end
 
 group :production do
