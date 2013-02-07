@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
+gem 'pg'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,13 +9,17 @@ gem 'rails', '3.2.9'
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'guard-rspec'
 end
 
 group :test do
+	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'rb-inotify'
+	gem 'libnotify'
 end
 
-group :production do 
+group :production do
 	gem 'pg'
 end
 # Gems used only for assets and not required
