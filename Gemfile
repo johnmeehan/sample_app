@@ -9,14 +9,19 @@ gem 'pg'
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'guard'
 	gem 'guard-rspec'
+	gem 'guard-spork', '0.3.2'
 end
 
 group :test do
 	gem 'rspec-rails'
-	gem 'capybara'
+	gem 'capybara', '1.1.2'
 	gem 'rb-inotify', '0.8.8'
 	gem 'libnotify', '0.5.9'
+
+	#ch3.6.3
+	gem 'spork', '~>0.9.0'
 end
 
 group :production do
