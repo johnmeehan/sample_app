@@ -2,16 +2,21 @@ require 'spec_helper'
 
 describe "Static Pages" do
 
-	#ch3.30 clean up test 
-	let(:base_title){"Sample App"}
-
 	subject{ page }
+
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1', text: heading)}
+    it { should have_selector('title', text: full_title(page_title))}
+    ####in the middle of 5.6 exercise implementing shared examples to eliminate duplication.
+  end
+
+
   describe "Home page" do
   	before { visit root_path }
-
-    it { should have_selector('h1', text: 'Sample App') }
-   	it { should have_selector 'title', text: full_title('') }
-   	it { should_not have_selector 'title',text: '| Home' }
+    let(:heading){'Sample App'}
+    let(:page_title){''}
+    it_should_behave_like "all static pages"
+    it { should_not have_selector 'title',text: '| Home' }
    
   end
 
@@ -27,10 +32,28 @@ describe "Static Pages" do
    	it { should have_selector 'title', text: full_title('About Us') }
 	end
 
-
    describe "Contact Page" do
  	  	before { visit contact_path }
 	    it { should have_selector('h1', text: 'Contact') }
 	   	it { should have_selector 'title', text: full_title('Contact') }
 	end
+
+
+    it "should have the right links on the right layout" do
+      visit root_path
+      click_link "About"
+      page.should have_selector 'title', text: full_title('About Us')
+      click_link "Help"
+      page.should have_selector 'title', text: full_title('Help')
+      click_link "Contact"
+      page.should have_selector 'title', text: full_title('Contact')
+      click_link "Home"
+      click_link "Sign up now!"
+      page.should have_selector 'title', text: full_title('Sign up')
+      click_link "sample app"
+      page.should have_selector 'title', text: full_title('')
+
+    end
+
+  
 end
