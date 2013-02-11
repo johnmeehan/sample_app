@@ -10,9 +10,10 @@ gem 'pg'
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
-	gem 'guard'
+	gem 'guard'     					#autorun test when there is a change
 	gem 'guard-rspec'
-	gem 'guard-spork', '0.3.2'
+	gem 'guard-spork', '0.3.2'	
+	gem 'annotate', '~> 2.4.1.beta'		# annotate models  
 end
 
 group :test do
@@ -22,11 +23,11 @@ group :test do
 	gem 'libnotify', '0.5.9'
 
 	#ch3.6.3
-	gem 'spork', '~>0.9.0'
+	gem 'spork', '~>0.9.0'				#sets up an instance so that it removes the startup time for running tests
 end
 
 group :production do
-	gem 'pg'
+	gem 'pg'							# Database
 end
 # Gems used only for assets and not required
 # in production environments by default.
