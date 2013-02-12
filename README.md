@@ -22,3 +22,5 @@ Bootstrap (Twitter) - nice framework for a modern front end
 
 Factory_girl_rails - a DSL specialised in for defining active record objects. for use in test!
 https://github.com/thoughtbot/factory_girl_rails
+
+Added Gravatar profile images 
