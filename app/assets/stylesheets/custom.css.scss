@@ -142,3 +142,29 @@ aside{
 	margin-left: 10px;
 	
 }
+
+/*ch7.19 Forms*/
+input, textarea, select, .uneditable-input{
+	
+	border:1px;
+	width:100%;
+	padding: 10px;
+	height: auto;
+	margin-bottom: 15px;
+	@include box_sizing;
+}
+
+/*7.24 forms - styling error messages*/
+#error_explanation{
+	color: #f00;
+	ul{
+		list-style: none;
+		margin:0 0 18px 0;
+	}
+}
+
+/*using extend to the include functionality of the Bootstrap classes*/
+.field_with_errors{
+	@extend .control-group;
+	@extent .error;
+}
