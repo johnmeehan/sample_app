@@ -20,4 +20,5 @@ Spork - Awesome  run Rspec test in 1/10 of the time! great find.
 SQLlitebroser  - for viewing databases
 Bootstrap (Twitter) - nice framework for a modern front end
 
-
+Factory_girl_rails - a DSL specialised in for defining active record objects. for use in test!
+https://github.com/thoughtbot/factory_girl_rails

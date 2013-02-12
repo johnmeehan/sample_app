@@ -82,8 +82,6 @@ describe User do
   end
 
   #6.3.3 User Authentication
-  
-
   #cover the two cases of password match and mismatch
   describe "return value of authenticate method" do
   	before {@user.save}

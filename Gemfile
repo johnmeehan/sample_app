@@ -25,6 +25,8 @@ group :test do
 
 	#ch3.6.3
 	gem 'spork', '~>0.9.0'				#sets up an instance so that it removes the startup time for running tests
+	# ch7
+	gem 'factory_girl_rails', '1.4.0'
 end
 
 group :production do
