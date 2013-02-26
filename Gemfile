@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass' # use twitter bootstrap
 gem 'pg'
 gem 'bcrypt-ruby', '3.0.1'  # to encrypt passwords etc
+gem 'faker', '1.0.1' # makes semi realisic users to test the site
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
