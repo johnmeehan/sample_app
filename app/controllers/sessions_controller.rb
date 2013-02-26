@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 			#sign the user in and redirect to the user's show page
 			#8.2
 			sign_in user
-			redirect_to user
+			redirect_back_or user  #redirects to whats in the session or be default to the user
  		else
 			#flash.now to fix flash persistance error
 			flash.now[:error] = 'Invalid email/password combination'
