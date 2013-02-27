@@ -5,6 +5,9 @@ gem 'bootstrap-sass' # use twitter bootstrap
 gem 'pg'
 gem 'bcrypt-ruby', '3.0.1'  # to encrypt passwords etc
 gem 'faker', '1.0.1' # makes semi realisic users to test the site
+gem 'will_paginate', '3.0.3' #paginate the users page
+gem 'bootstrap-will_paginate','0.0.6'# configures will paginate to use Bootstraps pagination styles
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
