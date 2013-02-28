@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	#before filter arranges for a particular method to be called before the given actions.
 	before_filter :signed_in_user, only: [:index,:edit,:update]
 	before_filter :correct_user, only:[:edit,:update]
+	before_filter :admin_user, only: :destroy
 
 	def index
 		#@users = User.all #not the best way of doing this as i dont need "all" of them
@@ -44,6 +45,12 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def destroy
+		User.find(params[:id]).destroy
+		flash[:success] = "User destroyed."
+		redirect_to users_path
+	end
+
 	private
 		def signed_in_user
 			unless signed_in?
@@ -55,5 +62,9 @@ class UsersController < ApplicationController
 		def correct_user
 			@user = User.find(params[:id])
 			redirect_to(root_path) unless current_user?(@user)	
+		end
+
+		def admin_user
+			redirect_to(root_path) unless current_user.admin?
 		end
 end
