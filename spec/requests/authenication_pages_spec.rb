@@ -13,7 +13,10 @@ describe "AuthenicationPages" do
 		  	before{ click_button "Sign in" }
 		  	it { should have_selector('title', text: 'Sign in') }
 		    it { should have_selector('div.alert.alert-error', text: 'Invalid') } 
-
+	    	it { should_not have_link('Profile')}
+	    	it { should_not have_link('Settings')}
+	    	it { should_not have_link('Sign out', href: signout_path)}
+	    	it { should have_link('Sign in', href: signin_path)}
 
 		    #catch flash persistance bug
 		    describe "after visiting another page" do
