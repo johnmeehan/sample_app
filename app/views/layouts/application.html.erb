@@ -17,7 +17,11 @@
 
 			<%= yield %>
 			<%= render 'layouts/footer' %>
-			<%= debug(params) if Rails.env.development? %> 
+			<% if Rails.env.development? %> 
+				<%= debug(params)%>
+				Request:  <BR><%= request.url %><BR>
+				
+			<% end %>
 		</div>
 	</body>
 </html>

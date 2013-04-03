@@ -14,18 +14,26 @@ class UsersController < ApplicationController
 	end
 	
 	def new
-		@user = User.new
+		if self.signed_in?
+			redirect_to root_path
+		else
+			@user = User.new
+		end
 	end
 
 	def create
-		@user = User.new(params[:user])
-		if @user.save
-			sign_in @user # signs in the the user after signing up
-			flash[:success] = "Welcome to the Sample App!"
-			#Handle a successful save
-			redirect_to @user 
+		if self.signed_in?
+			redirect_to root_path
 		else
-			render 'new'
+			@user = User.new(params[:user])
+			if @user.save
+				sign_in @user # signs in the the user after signing up
+				flash[:success] = "Welcome to the Sample App!"
+				#Handle a successful save
+				redirect_to @user 
+			else
+				render 'new'
+			end
 		end
 	end
 
@@ -46,8 +54,14 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		User.find(params[:id]).destroy
-		flash[:success] = "User destroyed."
+		#Modify the destroy action to prevent admin users from destroying themselves.
+		if current_user == User.find(params[:id])
+			
+			flash[:warning] = "Action not allowed"
+		else
+			User.find(params[:id]).destroy
+			flash[:success] = "User destroyed."
+		end
 		redirect_to users_path
 	end
 

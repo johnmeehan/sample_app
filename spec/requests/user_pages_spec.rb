@@ -46,6 +46,10 @@ describe "User Pages" do
 					expect { click_link('delete') }.to change(User, :count).by(-1)
 				end 
 				it { should_not have_link('delete', href: user_path(admin)) }
+				
+				it "should not be able to delete themselves"do
+					expect {delete user_path(admin)}.not_to change(User,:count)
+				end
 			end
 		end
 	end
@@ -102,7 +106,6 @@ describe "User Pages" do
  			visit edit_user_path(user)
  		end
 
-
  		describe "page" do 
  			it { should have_selector('h1', text: "Update your profile")}
  			it { should have_selector('title', text: "Edit user")}
@@ -111,7 +114,6 @@ describe "User Pages" do
 
  		describe "with invalid information" do
  			before {click_button "Save changes"}
-
  			it { should have_content('error')}
  		end
 

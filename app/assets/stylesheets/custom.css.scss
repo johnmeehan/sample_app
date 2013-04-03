@@ -91,11 +91,15 @@ p{
 /*footer*/
 footer{
 	margin-top: 45px;
-	padding-top: 5px;
+	padding-top: 10px;
 	border-top: 1px solid #eaeaea;
 	color: #999;
+	vertical-align: middle;
+	height:50px;
+
 	a {
 		color:#555;
+
 		&:hover{
 			color: #222;
 		}
@@ -108,7 +112,7 @@ footer{
 		list-style: none;
 		li{
 			float: left;
-			margin-left: 10px;
+			margin-left: 15px;
 		}
 	}
 }
@@ -141,7 +145,7 @@ aside{
 .gravatar{
 	float: left;
 	margin-left: 10px;
-	
+	padding-right:20px;
 }
 
 /*ch7.19 Forms*/
@@ -177,7 +181,7 @@ input, textarea, select, .uneditable-input{
 
 	li {
 		overflow: auto;
-		paddign: 10px 0;
+		padding: 10px 0;
 		border-top: 1px solid $greyLighter;
 
 		&:last-child{

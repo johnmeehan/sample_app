@@ -88,6 +88,7 @@ describe "AuthenicationPages" do
 
 					describe "when signing in again" do
 						before do
+							delete signout_path #9.52 A test for forwarding to the default page after friendly forwarding. 
 							visit signin_path
 							#changed from "Email" to :email
 							fill_in "Email", with: user.email
@@ -136,6 +137,23 @@ describe "AuthenicationPages" do
 				before { delete user_path(user)}
 				specify { response.should redirect_to(root_path)}
 			end
+		end
+
+		describe "as a signed in user" do 
+			let(:user) {FactoryGirl.create(:user)}
+			before{ sign_in user }
+
+			describe "should redirect to root for new " do 
+				before { visit new_user_path }
+				it { current_path.should == root_path }
+				#specify { response.should redirect_to(root_path) }
+			end
+			describe "should redirect to root for create" do 
+				before { visit signup_path }
+				it { current_path.should == root_path }
+				#specify { response.should redirect_to(root_path) }
+			end
+
 		end
 	end
 end
