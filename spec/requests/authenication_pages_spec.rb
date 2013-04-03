@@ -89,6 +89,7 @@ describe "AuthenicationPages" do
 					describe "when signing in again" do
 						before do
 							visit signin_path
+							#changed from "Email" to :email
 							fill_in "Email", with: user.email
 							fill_in "Password", with: user.password
 							click_button "Sign in"
