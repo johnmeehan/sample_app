@@ -107,7 +107,6 @@ describe User do
 
   end
 
-
   describe "email address with mixed case " do
   	let(:mixed_case_email){ "Foo@ExAMPLe.CoM"}
 

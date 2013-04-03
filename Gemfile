@@ -15,17 +15,23 @@ gem 'bootstrap-will_paginate','0.0.6'# configures will paginate to use Bootstrap
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
-	gem 'guard'     					#autorun test when there is a change
+	gem 'guard'     	#autorun test when there is a change
 	gem 'guard-rspec'
 	gem 'guard-spork', '0.3.2'	
+	gem 'guard-livereload', require: false # marked require: false. This is because they are only needed when running guard on the command line; they aren’t used by the Rails app itself.
 	gem 'annotate', '~> 2.4.1.beta'		# annotate models  
+end
+group :development do 
+	gem 'rb-inotify', '0.8.8' 
+	gem 'libnotify', '0.5.9'
+
+	gem 'rack-livereload' # used with guard livereload
 end
 
 group :test do
 	gem 'rspec-rails'
 	gem 'capybara', '1.1.2'
-	gem 'rb-inotify', '0.8.8'
-	gem 'libnotify', '0.5.9'
+
 
 	#ch3.6.3
 	gem 'spork', '~>0.9.0'				#sets up an instance so that it removes the startup time for running tests
