@@ -14,6 +14,15 @@ describe Micropost do
 
   it { should be_valid }
 
+  it "should destroy associated microposts" do
+    microposts = user.microposts.dup 	#dup to duplicated the array!
+    user.destroy
+    microposts.should_not be_empty
+    microposts.each do |micropost|
+    	Micropost.find_by_id(micropost.id).should be_nil
+    end
+  end
+
   describe "when user_id is not present" do
   	before { @micropost.user_id = nil }
   	it { should_not be_valid }

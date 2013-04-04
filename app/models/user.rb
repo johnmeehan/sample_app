@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password 
 
-  has_many :microposts  #10.9 
+  has_many :microposts , dependent: :destroy #10.9 
 
   before_save { |user| user.email = email.downcase } #before saving to the db downcase the email address to help ensure uniqueness
   before_save :create_remember_token
