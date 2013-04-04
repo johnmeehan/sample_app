@@ -28,6 +28,9 @@ describe User do
   it { should respond_to(:admin)} #9.4
   it { should_not be_admin }#9.4
 
+  it { should respond_to(:authenticate)}#10.9
+  it { should respond_to(:microposts)}#10.9
+
   it { should be_valid }
 
   describe "with admin attribute set to 'true'" do 
