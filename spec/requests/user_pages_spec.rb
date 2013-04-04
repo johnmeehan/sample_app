@@ -64,9 +64,21 @@ describe "User Pages" do
 	#i had an error here as i was ending the "user pages" block early so this test had not "page" context
 	describe "Profile page" do 
 		let(:user){ FactoryGirl.create(:user) } #ch7.1
+		let!(:m1){ FactoryGirl.create(:micropost, user: user, content: "Foo")} #10.19
+		let!(:m2){ FactoryGirl.create(:micropost, user: user, content: "Bar")}
+
+
 		before { visit user_path(user) }
 		it { should have_selector('h1', text: user.name)}
 		it { should have_selector('title', text: full_title(user.name))} # added in full title() as it is the format that is displayed in the header
+
+		describe "micropost" do
+		  it {should have_content(m1.content)} 
+		  it {should have_content(m2.content)} 
+		  it {should have_content(user.microposts.count)} 
+		end
+
+
 	end
 
 
