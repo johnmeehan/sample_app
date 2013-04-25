@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_secure_password 
 
   has_many :microposts , dependent: :destroy #10.9 
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy  #11.4
 
   before_save { |user| user.email = email.downcase } #before saving to the db downcase the email address to help ensure uniqueness
   before_save :create_remember_token

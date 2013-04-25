@@ -33,6 +33,8 @@ describe User do
 
   it { should respond_to(:feed)} #10.3.3
 
+  it { should respond_to(:relationships)}#11.2
+
   it { should be_valid }
 
   describe "with admin attribute set to 'true'" do 
