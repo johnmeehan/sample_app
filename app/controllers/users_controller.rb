@@ -1,8 +1,22 @@
 class UsersController < ApplicationController
 	#before filter arranges for a particular method to be called before the given actions.
-	before_filter :signed_in_user, only: [:index,:edit,:update]
+	before_filter :signed_in_user, only: [:index,:edit,:update, :following, :followers]
 	before_filter :correct_user, only:[:edit,:update]
 	before_filter :admin_user, only: :destroy
+
+	def following
+		@title = "Following"
+		@user = User.find(params[:id])
+		@users = @user.followed_users.paginate(page: params[:page])
+		render 'show_follow'
+	end
+
+	def followers
+		@title = "Followers"
+		@user = User.find(params[:id])
+		@users = @user.followers.paginate(page: params[:page])
+		render 'show_follow'
+	end
 
 	def index
 		#@users = User.all #not the best way of doing this as i dont need "all" of them

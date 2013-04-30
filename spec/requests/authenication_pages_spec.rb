@@ -70,6 +70,16 @@ describe "AuthenicationPages" do
 					before { visit users_path }
 					it { should have_selector('title', text: "Sign in") } 
 				end
+
+				#11.28 test for the authorization of the following and followers pages
+				describe "visting the following page" do
+					before{ visit following_user_path(user)}
+					it { should have_selector('title', text: 'Sign in')}
+				end
+				describe "visiting the follwers page" do 
+					before { visit followers_user_path(user)}
+					it { should have_selector('title', text: 'Sign in')}
+				end
 			end
 
 			#Test for friendly forwarding. after valid signin resulting page should be Edit user page
