@@ -52,6 +52,8 @@ describe "AuthenicationPages" do
 		describe "for non-signed-in user" do 
 			let(:user){FactoryGirl.create(:user)}
 
+
+
 			describe "in the Users controller" do
 				
 				describe "visiting the edit page" do
@@ -122,6 +124,19 @@ describe "AuthenicationPages" do
 				 	before { delete micropost_path(FactoryGirl.create(:micropost))}
 				 	specify { response.should redirect_to(signin_path) }
 				end
+			end
+
+			describe "in the Relationships controller" do 
+				#what authorisations are reqired for the Relationships controller 
+				describe "submit a create action" do 
+					before { post relationships_path }
+					specify { response.should redirect_to signin_path }
+				end
+				describe "submitting a destroy action" do 
+					before { delete relationship_path(1) }
+					specify { response.should redirect_to signin_path }
+				end
+
 			end
 		end
 

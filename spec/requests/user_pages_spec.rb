@@ -78,9 +78,54 @@ describe "User Pages" do
 		  it {should have_content(user.microposts.count)} 
 		end
 
+		#11.32 Test for the follow/unfollow button 
+		describe "follow / unfollow button" do 
+			let(:other_user){FactoryGirl.create(:user)}
+			before { sign_in(user)}
 
+			describe "follow a user" do
+				before { visit user_path(other_user) }
+				  
+				it "should increment the followed user count" do
+					expect do
+						click_button "Follow"
+					end.to change(user.followed_users, :count).by(1)
+				end
+				it "should increment the other users followers count" do
+					expect do 
+						click_button "Follow"
+					end.to change(other_user.followers, :count).by(1)
+				end
+
+				describe "Toggles the button" do 
+					before { click_button "Follow"}
+					it { should have_selector('input', value: 'Unfollow')}
+				end
+			end
+
+			describe "Unfollow a user" do 
+				before do 
+					user.follow!(other_user)
+					visit user_path(other_user)
+				end
+				it "should decrement the followed users count" do 
+					expect do 
+						click_button "Unfollow"
+					end.to change(user.followed_users, :count).by(-1)
+				end
+				it "should derement the follows users follower count" do 
+					expect do
+						click_button "Unfollow"
+					end.to change(other_user.followers, :count).by(-1)
+				end
+
+				describe "Toggle the Unfollow button" do 
+					before { click_button "Unfollow" }
+					it { should have_selector('input', value: 'Follow') }
+				end
+			end
+		end
 	end
-
 
 	describe "signup" do
 		before{ visit signup_path }
@@ -149,7 +194,7 @@ describe "User Pages" do
  		end
  	end
 
- 	require File.dirname(__FILE__) + '/../spec_helper'
+ 	
  	
  	describe "following/followers" do
  	  let(:user){FactoryGirl.create(:user)}
